@@ -1,0 +1,61 @@
+/**
+ * @author Nathaniel Adams, Levi Kruse, Jonathan Sandberg, Craig Jones
+ * @email nacatcrazy@gmail
+ * @create date 2020-02-07 14:30:29
+ * @modify date 2020-02-07 14:30:29
+ * @desc This file is going to be the main foundation that will communcate to the lower classes such as the Geometry class
+ *       Make your own equation class and if we have time to simfly your output.
+ */
+
+
+package app;
+
+import java.util.Scanner;
+
+public class Menu {
+
+//  ===============================================================================
+    enum Choices {
+        RECTANGLE, CIRCLE, TRIANGLE, TRAPIZOID, SPHERE, CUBE, CONE, CREATEOWN, QUIT 
+    };
+//  ===============================================================================
+
+//  ===============
+    public Menu() {
+
+        System.out.println("Menu Constructor Invoked.");
+        
+    }// Constructor 
+//  ===============
+
+//  ============================
+    public void Introduction() {
+
+        System.out.print("=============================\n" +
+                         "This program will be able to \n" +
+                         "calculate many shape areas of\n" +
+                         "3d objects and 2d objects    \n" +
+                         "=============================\n" );
+
+    }// Intruduction Function
+
+
+//  =======================
+    public void Display() {
+
+        System.out.print("===================================\n" +
+                         "1. Rectangle       2. Circle       \n" +
+                         "2. Triangle        3. Trapizoid    \n" +
+                         "5. Sphere          6. Cube         \n" +
+                         "7. Cone            8. Create my own\n" +
+                         "9. Quit                            \n" +
+                         "===================================\n");
+                    
+    }// Display Function
+//  ====================
+
+
+
+
+
+}
