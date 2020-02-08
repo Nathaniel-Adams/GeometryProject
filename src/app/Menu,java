@@ -2,7 +2,7 @@
  * @author Nathaniel Adams, Levi Kruse, Jonathan Sandberg, Craig Jones
  * @email nacatcrazy@gmail
  * @create date 2020-02-07 14:30:29
- * @modify date 2020-02-07 14:30:29
+ * @modify date 2020-02-07 18:09:29
  * @desc This file is going to be the main foundation that will communcate to the lower classes such as the Geometry class
  *       Make your own equation class and if we have time to simfly your output.
  */
@@ -11,7 +11,10 @@
 package app;
 
 import java.util.Scanner;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+//  ===============
 public class Menu {
 
 //  ===============================================================================
@@ -19,6 +22,9 @@ public class Menu {
         RECTANGLE, CIRCLE, TRIANGLE, TRAPIZOID, SPHERE, CUBE, CONE, CREATEOWN, QUIT 
     };
 //  ===============================================================================
+    
+    private Scanner keyboard = new Scanner(System.in);
+    Choices choices;
 
 //  ===============
     public Menu() {
@@ -43,9 +49,10 @@ public class Menu {
 //  =======================
     public void Display() {
 
+        System.out.println();
         System.out.print("===================================\n" +
                          "1. Rectangle       2. Circle       \n" +
-                         "2. Triangle        3. Trapizoid    \n" +
+                         "3. Triangle        4. Trapizoid    \n" +
                          "5. Sphere          6. Cube         \n" +
                          "7. Cone            8. Create my own\n" +
                          "9. Quit                            \n" +
@@ -54,8 +61,79 @@ public class Menu {
     }// Display Function
 //  ====================
 
+//  =========================
+    public void QueryUser() {
+
+        int answer;
+
+        System.out.println("\nPlease enter your Selection: ");
+        answer = keyboard.nextInt();
+
+        switch(answer) {
+            case 1: choices = Choices.RECTANGLE;
+                break;
+            case 2: choices = Choices.CIRCLE;
+                break;
+            case 3: choices = Choices.TRIANGLE;
+                break;
+            case 4: choices = Choices.TRAPIZOID;
+                break;
+            case 5: choices = Choices.SPHERE;
+                break;
+            case 6: choices = Choices.CUBE;
+                break;
+            case 7: choices = Choices.CONE;
+                break;
+            case 8: choices = Choices.CREATEOWN;
+                break;
+            case 9: choices = Choices.QUIT;
+                break;
+            default: choices = Choices.QUIT;
+        }
+
+    }// QueryUser Function
+//  ======================
+
+//  ==========================
+    public boolean Continue() throws Exception {
+        if (choices == Choices.QUIT) 
+            return false;
+        else
+            return true;
+    }
+
+//  ====================================================================
+    public void ClearScreen() throws IOException, InterruptedException {
+
+        /* ================SCRAPPED=====================================
+        System.out.print("\033[H\033[2J");// This is an ANSI excape code
+        // \033 stands for ESC(ANSI value 27)
+        // Which starts the command as ESC[
+        // then H moves the cursor to the top left corner of the screen
+        // and \033[J clears the part of the screen from the cursor to the end of the screen
+        // This functionally the ctrl + L
+        // For more information on ANSI escape codes visit: https://en.wikipedia.org/wiki/ANSI_escape_code
+        System.out.flush();
+        // Flush must happen due to the use of a ANSI and not using printf
+        ==================================================================*/
+
+        TimeUnit.SECONDS.sleep(5);
+        // This is a delay function for 5 seconds.
+
+        final String os = System.getProperty("os.name"); 
+        // Since the value of string is not changed ever again it is better to make it final which means it can not be changed.
+        // The System.getProperty will retrieve the exact string name of the system.
+        if (os.contains("Windows")) // This will check the string if it contains Windows
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            // Will run the object to run the command of to open cmd then command then cls.
+        else 
+            Runtime.getRuntime().exec("clear");
+            // Then if it's not windows it will excetute the command clear for all the rest of the ios.
+
+    }// ClearScreen Function()
+//  ==========================
 
 
 
-
-}
+}// Class Menu
+//  ==========
