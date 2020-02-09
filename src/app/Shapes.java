@@ -8,13 +8,15 @@
 
 package app;
 
-public class Shapes {
+public class Shapes extends CommonFunctions {
 
     public Shapes() {
         
     }
 
-    public void close() {
+    public void close() throws Exception {
+
+        
 
     }
 
