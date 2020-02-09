@@ -23,9 +23,11 @@ public class Menu extends CommonFunctions {
     };
 //  ===============================================================================
     
-    private Shapes shapes = new Shapes();
+//  ==================================================
     private Scanner keyboard = new Scanner(System.in);
+    private Shapes shapes = new Shapes(keyboard);
     private Choices choices;
+//  ==================================================
 
 //  ===============
     public Menu() {
@@ -71,11 +73,7 @@ public class Menu extends CommonFunctions {
 
         int answer = 0;
 
-        System.out.println("\nPlease enter your Selection: \u001b[34m");
-        InvalidInputInt(keyboard);
-        answer = keyboard.nextInt();
-        if ((answer > 9)||(answer < 1)) 
-            System.out.println("Error: The integer that has been entered is out of range or invalid!");
+        answer = InputInt(keyboard, 1, 9);
 
 
         switch(answer) {
@@ -113,17 +111,17 @@ public class Menu extends CommonFunctions {
 //  ========================================
 
 //  ==============================
-    public void ProcessCommand() {
+    public void ProcessCommand() throws Exception {
 
         switch(choices) {
             case RECTANGLE: 
-            
+                    shapes.Rectangle();
                 break; 
             case CIRCLE:
 
                 break;
             case TRIANGLE:
-
+                    shapes.Triangle();
                 break;
             case TRAPIZOID:
 
