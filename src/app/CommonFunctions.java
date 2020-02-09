@@ -1,10 +1,21 @@
+/**
+ * @author Nathaniel Adams, Levi Kruse, Jonathan Sandberg, Craig Jones
+ * @email nacatcrazy@gmail
+ * @create date 2020-02-08 22:22:42
+ * @modify date 2020-02-08 22:22:42
+ * @desc [description]
+ */
+
+
 package app;
 
+//  =================================
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
+//  =================================
 
-
+//  ==========================
 public class CommonFunctions {
 
     //  ====================================================================
@@ -44,13 +55,43 @@ public class CommonFunctions {
 //  ===============================================
     public void InvalidInputInt(Scanner keyboard) {
 
-        if (!keyboard.hasNextInt()) {
+        if (!keyboard.hasNextInt()) {// In the scanner class it has a function to check if the next value is valid or not.
             System.out.println("Error: This is not a valid Int!");
-            keyboard.next();
+            keyboard.next();// This will skip the input then go next.
             System.out.print("Please try again: ");
-        }
+        } 
 
     }// InvalidInputInt Function()
 //  ==============================
 
-}
+//  =========================================================
+    public int InputInt(Scanner keyboard, int min, int max) {
+    
+        int answer = 0;
+
+        System.out.println("\nPlease enter your Selection: \u001b[34m"); 
+        InvalidInputInt(keyboard); // checks the input 
+        answer = keyboard.nextInt();
+        if (((answer > max)||(answer < min))&&(min != max)) // if min and max is the same it will act as just to grab the int only.
+            System.out.println("Error: The integer that has been entered is out of range or invalid!"); 
+        return answer; // returns int
+
+    }// InputInt Function()
+//  =======================
+
+//  =========================================
+    public void MenuDisplay2d (String file) {
+
+        String space = "          "; // this is to try to make the object directly in the middle
+        file = space.substring(0, space.length() - file.length()/2) + file;
+        System.out.println("       \u001b[35m" + file + "\u001b[0m" + "       \n" + 
+                           "\u001b[31m==================================\u001b[0m\n" +
+                           "\u001b[34m1.\u001b[0m Set sides     \u001b[34m2.\u001b[0m Get Perimeter   \n" +
+                           "\u001b[34m3.\u001b[0m Get Area      \u001b[34m4.\u001b[0m Display Shape\n" +
+                           "\u001b[34m5.\u001b[0m Go back                          \n" +
+                           "\u001b[31m==================================\u001b[0m\n" );
+
+    }// MenuDisplay2d Function
+//  ==========================
+
+}// 
