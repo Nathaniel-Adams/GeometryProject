@@ -7,18 +7,66 @@
  */
 
 package app;
+import app.shapes.*;
+import java.util.Scanner;
 
 public class Shapes extends CommonFunctions {
 
-    public Shapes() {
-        
-    }
+//  ===========================================
+    private Triangle triangle;
+    private Rectangle rectangle;
+//  ===========================================
 
-    public void close() throws Exception {
+//  =================================
+    public Shapes(Scanner keyboard) {
 
-        
+        triangle = new Triangle(keyboard);
+        rectangle = new Rectangle(keyboard);
+    }// Constructor
+//  ===============
 
-    }
+//  ==========================================
+    public void Rectangle() throws Exception {
+
+        Rectangle.ClearScreen();
+
+        do {
+            rectangle.MenuDisplay2d("Rectangle");
+
+            Triangle.ClearScreen();
+
+        } while(false);
+
+    }// Rectangle Function
+//  ======================
+
+//  =========================================
+    public void Triangle() throws Exception {
+
+        Triangle.ClearScreen();
+
+        do {
+            triangle.Menu();
+            triangle.QueryUser();
+            triangle.ProcessCommand();
+
+            if (triangle.Goback())
+                Triangle.ClearScreen();
+
+        } while(triangle.Goback());
+
+    }// Triangle Function
+//  =====================
+
+//  =====================
+    public void close() {
+
+        triangle.close();
+        triangle = null;
+        rectangle = null;
+
+    }// Function Close
+//  ==================
 
 
 }
