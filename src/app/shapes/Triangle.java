@@ -19,6 +19,7 @@ public class Triangle extends CommonFunctions {
     private Choices choices;
     private Scanner keyboard;
     private EquilateralTriangle equilateraltriangle;
+    private ScaleneTriangle scalenetriangle;
 //  ====================================================================================
 
 //  ===================================
@@ -26,6 +27,7 @@ public class Triangle extends CommonFunctions {
 
         this.keyboard = keyboard;
         equilateraltriangle = new EquilateralTriangle(keyboard);
+        scalenetriangle = new ScaleneTriangle(keyboard);
 
     }// Constructor
 //  ===============
@@ -93,6 +95,19 @@ public class Triangle extends CommonFunctions {
             case ISOSCELES:
                 break;
             case SCALENE:
+            System.out.println("\nOpening Scalene Triangle");
+
+            ScaleneTriangle.ClearScreen();
+
+            do {
+                scalenetriangle.MenuDisplay2d("Scalene Triangle");
+                scalenetriangle.QueryUser();
+                scalenetriangle.ProcessCommand();
+                
+                if (scalenetriangle.goback()) 
+                    ScaleneTriangle.ClearScreen();
+                
+            } while(scalenetriangle.goback());
                 break;
             case GOBACK:
                     System.out.println("\nGoing back please wait");
