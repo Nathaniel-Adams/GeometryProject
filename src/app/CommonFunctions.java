@@ -78,6 +78,32 @@ public class CommonFunctions {
 
     }// InputInt Function()
 //  =======================
+    
+    //  ===============================================
+    public void InvalidInputDouble(Scanner keyboard) {
+
+        if (!keyboard.hasNextDouble()) {// In the scanner class it has a function to check if the next value is valid or not.
+            System.out.println("Error: This is not a valid Real Number!");
+            keyboard.next();// This will skip the input then go next.
+            System.out.print("Please try again: ");
+        } 
+
+    }// InvalidInputDouble Function()
+//  ==============================
+
+//  =========================================================
+    public double InputDouble(Scanner keyboard, double min, double max) {
+    
+        double answer = 0;
+
+        System.out.println("\nPlease enter your Selection: \u001b[34m"); 
+        InvalidInputDouble(keyboard); // checks the input 
+        answer = keyboard.nextDouble();
+        if (((answer > max)||(answer < min))&&(min != max)) // if min and max is the same it will act as just to grab the int only.
+            System.out.println("Error: The Real Number value that has been entered is out of range or invalid!"); 
+        return answer; // returns double
+
+    }// InputDouble Function()
 
 //  =========================================
     public void MenuDisplay2d (String file) {
