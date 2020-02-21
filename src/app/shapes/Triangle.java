@@ -15,24 +15,31 @@ public class Triangle extends CommonFunctions {
     };
 //  ==================================================
 
-//  ===================================================================================    
+//  ===========================================================================    
     private Choices choices;
     private Scanner keyboard;
     private EquilateralTriangle equilateraltriangle;
-    private ScaleneTriangle scalenetriangle;
-    private RightTriangle righttriangle;
-//  ====================================================================================
+    private ScaleneTriangle     scalenetriangle;
+    private IsoscelesTriangle   isoscelestriangle;
+    private RightTriangle       righttriangle;
+//  ===========================================================================
+
+
 
 //  ===================================
     public Triangle(Scanner keyboard) {
 
         this.keyboard = keyboard;
         equilateraltriangle = new EquilateralTriangle(keyboard);
-        scalenetriangle = new ScaleneTriangle(keyboard);
-        righttriangle = new RightTriangle(keyboard);
+        equilateraltriangle = new EquilateralTriangle(keyboard);
+        scalenetriangle     = new ScaleneTriangle(keyboard);
+        isoscelestriangle   = new IsoscelesTriangle(keyboard);
+        righttriangle       = new RightTriangle(keyboard);
 
-    }// Constructor
+    } // Constructor
 //  ===============
+
+
 
 //  ====================
     public void Menu() {
@@ -43,13 +50,15 @@ public class Triangle extends CommonFunctions {
                          "\u001b[34m5.\u001b[0m Go back                                 \n" +
                          "\u001b[31m===========================================\u001b[0m\n" );
 
-    }// Menu Function
+    } // Menu Function
 //  =================
+
+
 
 //  ==========================================
     public void QueryUser() throws Exception {
 
-        int answer = 0;
+        int answer;
 
         answer = InputInt(keyboard, 1, 5);
 
@@ -68,13 +77,18 @@ public class Triangle extends CommonFunctions {
 
         System.out.print("\u001b[0m"); // this will change the color back to normal.
 
-    }// QueryUser Function
+    } // QueryUser Function
 //  ======================
+
+
+
+
 
 //  ===============================================
     public void ProcessCommand() throws Exception {
-
+      
         switch(choices) {
+
             case EQUILATERAL:
 
                 System.out.println("\nOpening Equilateral Triangle");
@@ -92,45 +106,85 @@ public class Triangle extends CommonFunctions {
                 } while(equilateraltriangle.goback());
 
                 break;
+
+                
             case RIGHT:
                 System.out.println("\nOpening Right Triangle");
-                
+
                 RightTriangle.ClearScreen();
-                
+
                 do {
                     righttriangle.MenuDisplay2d("Right Triangle");
                     righttriangle.QueryUser();
                     righttriangle.ProcessCommand();
-                    
+
                     if (righttriangle.goback())
                         RightTriangle.ClearScreen();
-                    
+
                 } while(righttriangle.goback());
+
                 break;
+
+                
             case ISOSCELES:
+               
+                Choices choice = choices;
+                
+                System.out.println("\nOpening Isosceles Triangle");
+
+                IsoscelesTriangle.ClearScreen();
+
+                do {
+                    isoscelestriangle.IsoscelesCreationMenu();
+                    isoscelestriangle.QueryIsoscelesCreationMenuInput();
+                    isoscelestriangle.ProcessIsoscelesCreationCommand();
+                    
+                    if (isoscelestriangle.goback())
+                        break;  // exit outer do loop
+                                        
+                    do {
+                        isoscelestriangle.DisplayIsoscelesInfoMenu();
+                        isoscelestriangle.QueryDisplayIsoscelesInfoMenuiInput();
+                        isoscelestriangle.DisplayRequestedIsoscelesInfo();
+                    
+                        if(isoscelestriangle.goback())
+                           break;  // exit inner do loop
+                      
+                    } while(true);
+                    
+                } while(true);
+
                 break;
+                
+
             case SCALENE:
-            System.out.println("\nOpening Scalene Triangle");
 
-            ScaleneTriangle.ClearScreen();
+                System.out.println("\nOpening Scalene Triangle");
 
-            do {
-                scalenetriangle.MenuDisplay2d("Scalene Triangle");
-                scalenetriangle.QueryUser();
-                scalenetriangle.ProcessCommand();
-                
-                if (scalenetriangle.goback()) 
-                    ScaleneTriangle.ClearScreen();
-                
-            } while(scalenetriangle.goback());
+                ScaleneTriangle.ClearScreen();
+                do {
+                    scalenetriangle.MenuDisplay2d("Scalene Triangle");
+                    scalenetriangle.QueryUser();
+                    scalenetriangle.ProcessCommand();
+
+                    if (scalenetriangle.goback())
+                        ScaleneTriangle.ClearScreen();
+
+                } while(scalenetriangle.goback());
+
                 break;
+
+
             case GOBACK:
+
                     System.out.println("\nGoing back please wait");
                 break;
-        }
+        } // switch
         
-    }// ProcessCommand Function
+    } // ProcessCommand Function
 //  ===========================
+
+
 
 //  =========================
     public boolean Goback() {
@@ -140,21 +194,23 @@ public class Triangle extends CommonFunctions {
         else
             return false;
 
-    }// Goback Function
+    } // Goback Function
 //  ===================
+
+
 
 //  =====================
     public void close() {
 
+        righttriangle       = null;
+        scalenetriangle     = null;
+        isoscelestriangle   = null;
         equilateraltriangle = null;
-        righttriangle = null;
-        
-    }// Close Function
+
+    } // Close Function
 //  ==================
 
 
 }// class Triangle
 //  ==============
-
-
 
