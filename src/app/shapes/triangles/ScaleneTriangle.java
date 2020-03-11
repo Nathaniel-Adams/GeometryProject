@@ -1,3 +1,15 @@
+//=============================================================================
+// ScaleneTriangle.java
+//
+// Implemention of the ScaleneTriangle class
+// Geometry Project.
+//
+//          Original Author: Levi Kruse
+//                    Class: CS275
+// Date of First Submission: 02/20/2020
+//                  Project: GeometryProject (Winter 2020 Team Project)
+//
+//=============================================================================
 package app.shapes.triangles;
 
 import app.CommonFunctions;
