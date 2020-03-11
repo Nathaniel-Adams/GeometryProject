@@ -18,25 +18,38 @@
 package app.shapes.triangles;
 
 import app.CommonFunctions;
+import app.shapes.Graph;
+import app.shapes.Line;
+import app.shapes.Point;
 import java.util.Scanner;
 import java.lang.Math;
 import java.lang.StrictMath;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 
 //  ===========================================================================
 //  Class Definition of an IsoscelesTriangle class
 //  ===========================================================================
 public class IsoscelesTriangle extends CommonFunctions {
 
+    // Allowed choices for the isosceles triangle sub-menu.
     enum Choices {
+        // Define by the length of the 3 legs
         KNOW_3LEGS, 
+        // Define by the length of a congruent side and the apex angle
         KNOW_CONGRUENTLEGS_APEXANGLE,
+        // Define by the length of a congruent side and a base angle
         KNOW_CONGRUENTLEGS_BASEANGLES, 
+        // Define by the length of the base leg and the apex angle
         KNOW_BASELEG_APEXANGLE,
+        // Define by the length of the base leg and a base angle
         KNOW_BASELEG_BASEANGLES, 
+        // Display the calculated perimeter
         PERIMETER, 
+        // Display the calculated area
         AREA, 
+        // Display a graph of the triangle
         DISPLAY, 
+        // Go back to the general triangle menu
         GOBACK
     };
 
@@ -47,7 +60,7 @@ public class IsoscelesTriangle extends CommonFunctions {
     
     private Choices choice;
     private Scanner keyboard;
-//  =================
+
 
 // ============================================================================
 //  Constructor
@@ -285,22 +298,56 @@ public class IsoscelesTriangle extends CommonFunctions {
 
 
             case DISPLAY:
+                Point pt1, pt2;
+                Line  line;
+                ArrayList<Line> lineList;
+                double bisector;
+                double legA, legB;
+                Graph graph;
 
-                if (congruentLegs != 0.0) {
-                   /*
-                    String string = "  /  \\  ";
-                    if (legA >= 10 ) 
-                        string = string.substring(1, string.length()); // if the value is over 10 it will allow the display not to be messed up.
-                        System.out.println("    /\\    \n" +
-                                     legA + string + legB +"  \n" +
-                                           "  /    \\  \n" + 
-                                           " --------  \n" +
-                                           "    " + legC); 
-                  */
-                   System.out.println("Display not implemented for Isosceles triangle.");
-                }// if
-                else
-                    System.out.println("Error: No sides are set yet!");
+                if(congruentLegs == 0.0) {
+                   System.out.println("Error: No sides are set yet!");
+                   break;
+                }
+               
+                // Instantiate a graph object and initialize it
+                graph = new Graph();
+                graph.InitializeGraph("Isosceles Triangle", graph);
+   
+                // Create a new line list for the polygon
+                lineList = Line.CreateLineList();
+                             
+                // create the first line -- the base leg.  The first point is
+                // at the origin.
+                pt1  = new Point(0.0, 0.0);
+                pt2  = new Point(baseLeg, 0.0);
+                line = new Line(pt1, pt2);
+                lineList.add(line);
+                
+                // Create the line for the left congruent side. The 1st endpoint
+                // is already set. The scond endpoint is half of the base leg 
+                // length and the height is = the length of the perpendicular
+                // bisector.
+                legA     = getBaseLeg() / 2.0;
+                legB     = getCongruentLegs();
+                bisector = Math.sqrt(Math.abs((legA * legA) - (legB * legB))); 
+                pt2.setPointX(baseLeg / 2.0);
+                pt2.setPointY(bisector);
+                line = new Line(pt1, pt2);
+                lineList.add(line);
+                
+                // Now create the opposite congruent leg line. pt2 is already set.
+                pt1.setPointX(baseLeg);
+                pt1.setPointY(0.0);
+                line = new Line(pt1, pt2);
+                lineList.add(line);
+                
+                // Add the lineList to the shapeList    
+                graph.shapeList.add(lineList);
+                
+                // Plot the polygon
+                graph.PlotShapes();
+      
                 break;
 
 
@@ -324,17 +371,18 @@ public class IsoscelesTriangle extends CommonFunctions {
 //  Returns true if the user selected the "Go Back" option in any menu.
 // ============================================================================
     public boolean goback() {
-        if (choice == Choices.GOBACK)
+        if(choice == Choices.GOBACK)
             return true;
         else
             return false;
     } // goback()
 
 
-
-
-//  ===================
-    public void CalculateIsoscelesTriangle() {
+// ============================================================================
+//  Calculates the remaining values for an Isosceles triangle from the known
+//  values entered by the user in ProcessIsoscelesCreationCommand().
+// ============================================================================
+    private void CalculateIsoscelesTriangle() {
       
         double legA;
         double legB;
@@ -433,7 +481,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // ============================================================================
 // Returns the perimeter of an isosceles triangle
 // ============================================================================
-   public double CalculateIsoscelesPerimeter() {
+   private double CalculateIsoscelesPerimeter() {
 
        return ((2.0 * this.getCongruentLegs()) + this.getBaseLeg());
 
@@ -443,7 +491,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // ============================================================================
 // Returns the area of an isosceles triangle
 // ============================================================================
-   public double CalculateIsoscelesArea() {
+   private double CalculateIsoscelesArea() {
 
        double oneHalfBase;
        double hypotonuse;
@@ -469,7 +517,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // Accessor method to retrieve the length of the congruent legs of an isosceles
 // triangle.
 // ============================================================================
-   public double getCongruentLegs() {
+   private double getCongruentLegs() {
 
        return this.congruentLegs;
 
@@ -480,7 +528,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // Mutator method to set the length of the congruent legs of an isosceles
 // triangle.
 // ============================================================================
-   public void setCongruentLegs(double legLength) {
+   private void setCongruentLegs(double legLength) {
 
        this.congruentLegs = legLength;
 
@@ -491,7 +539,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // Accessor method to retrieve the length of the base leg of an isosceles
 // triangle.
 // ============================================================================
-   public double getBaseLeg() {
+   private double getBaseLeg() {
 
        return this.baseLeg;
 
@@ -501,7 +549,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // ============================================================================
 // Mutator method to set the length of the base leg of an isosceles triangle.
 // ============================================================================
-   public void setBaseLeg(double legLength) {
+   private void setBaseLeg(double legLength) {
 
        this.baseLeg = legLength;
 
@@ -512,7 +560,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // Accessor method to retrieve the degrees of angle of the apex angle of an 
 // isosceles triangle.
 // ============================================================================
-   public double getApexAngle() {
+   private double getApexAngle() {
 
        return this.apexAngle;
 
@@ -523,7 +571,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // Mutator method to set the degrees of angle of the apex angle of an 
 // isosceles triangle.
 // ============================================================================
-   public void setApexAngle(double angleDegrees) {
+   private void setApexAngle(double angleDegrees) {
 
        this.apexAngle = angleDegrees;
 
@@ -534,7 +582,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // Accessor method to retrieve the degrees of angle of the base angles of an 
 // isosceles triangle.
 // ============================================================================
-   public double getBaseAngles() {
+   private double getBaseAngles() {
 
        return this.baseAngles;
 
@@ -545,7 +593,7 @@ public class IsoscelesTriangle extends CommonFunctions {
 // Mutator method to set the degrees of angle of the base angles of an 
 // isosceles triangle.
 // ============================================================================
-   public void setBaseAngles(double angleDegrees) {
+   private void setBaseAngles(double angleDegrees) {
 
        this.baseAngles = angleDegrees;
 
