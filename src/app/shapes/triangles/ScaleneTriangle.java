@@ -27,10 +27,10 @@ public class ScaleneTriangle extends CommonFunctions {
 //  ==============================================
 
 //  =================
-    private int legA;
-    private int legB;
-    private int legC;
-    private int base;
+    private double legA;
+    private double legB;
+    private double legC;
+    private double base;
     private Choices choices;
     private Scanner keyboard;
 //  =================
