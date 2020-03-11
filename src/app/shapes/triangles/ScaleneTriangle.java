@@ -88,7 +88,7 @@ public class ScaleneTriangle extends CommonFunctions {
                 break;
             case PERIMETER:
                     if (legA != 0 && legB != 0 && legC != 0) {
-                        int Perimeter = legA + legB + legC;
+                        double Perimeter = legA + legB + legC;
                         System.out.println("Side 1 + Side 2 + Side 3 = " + Perimeter + "\n" +
                                          legA + " + " + legB + " + " + legC + " = " + Perimeter + " units");
                     }// then
