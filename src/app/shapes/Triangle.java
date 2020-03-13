@@ -1,4 +1,23 @@
 
+//=============================================================================
+// Triangle.java
+//
+// Displays the Main Triangle menu allowing the user to select which type of 
+// triangle they want to create and analyze.
+//
+//          Original Author: Nate Adams
+//                    Class: CS275
+// Date of First Submission: 02/20/2020
+//                  Project: GeometryProject (Winter 2020 Team Project)
+//
+// Revisions: 
+//
+//       Revisor          Date     Description
+//  -----------------  ----------  --------------------------------------------
+//  Craig Jones        02/28/2020  Added Isosceles triangle option
+//  Levi Kruse         03/01/2020  Added Scalene trianle option
+//  Jonathon Snadberg  03/06/2020  Added Right triangle option
+//=============================================================================
 package app.shapes;
 
 //  ==========================
