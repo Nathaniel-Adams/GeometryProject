@@ -171,6 +171,10 @@ public class Graph extends JPanel {
       // Plot the shapes to the JFrame window.
       graph.PlotShapes();
       
+      // Plot the triangle from the lengths of 3 lines using the public static
+      // interface.
+      PlotTriangleFromLineLengths(12.0, 11.0, 2.5);
+            
    } // main()
    
 
@@ -555,6 +559,98 @@ public class Graph extends JPanel {
       return yMax;
    } // GetYMax() 
 
+   
+   
+   
+   // Given the lengths of the 3 legs of a triangle, plot the triangle. 
+   public static void PlotTriangleFromLineLengths(double A, double B, double C) {
+      double x, y;
+      double a = A;
+      double b = B;
+      double c = C;
+      double temp;
+      double longest = c;  // assume that c is the longest already
+      Point pt1;
+      Point pt2;      
+      Line            line;
+      ArrayList<Line> lineList;
+      Graph           graph;
+      
+      // Make sure the longest leg is in c.  If the longest leg is coincident
+      // with the X axis, this algorithm will work nicely with scalene triangles.
+      if(a > longest) {
+         temp = a;
+         a = longest;
+         longest = temp;
+      } // if
+      if(b > longest) {
+         temp = b;
+         b = longest;
+         longest = temp;
+      } // if
+      c = longest;
+  
+      // Determine if the lengths are capable of describing a triangle.
+      if(InvalidLegLengths(a, b, c)) {
+         
+         System.out.println("Given legs do not describe a possible triangle.");
+         return;
+      }
+      
+      // See the discussion for this algorithm in Graph.docx
+      x = (((c * c) + (a * a)) - (b * b)) / (2 * c);
+      y = Math.sqrt(((a * a) - (x * x)));
+      
+      // Now build the shapeList from the coordinates the we now have.  
+      // Instantiate a graph object and initialize it
+      graph = new Graph();
+      graph.InitializeGraph("Isosceles Triangles", graph);
+   
+      // Create a new line list for the polygon
+      lineList = Line.CreateLineList();
+    
+      // Create a new line object from two points
+      // Note:Tthe two points are deep copied into the line object by the 
+      //       Line(pt1, pt2) constructor.
+      pt1  = new Point(0.0, 0.0);
+      pt2  = new Point(c, 0.0);
+      line = new Line(pt1, pt2); 
+      lineList.add(line);
+      
+      // Create a 2nd line to add to the line list (the 1st point is the same
+      // as above)
+      pt2.setPointX(x);
+      pt2.setPointY(y);
+      line = new Line(pt1, pt2);
+      lineList.add(line);
+      
+      // Create a 3rd line to add to the line list (the 2nd point is the same
+      // as above)
+      pt1.setPointX(c);
+      pt1.setPointY(0.0);
+      line = new Line(pt1, pt2);
+      lineList.add(line);
+           
+      // Add the lineList to the shapeList    
+      // Note: Outside of this class, you will need to use 
+      // GetShapeList().add(lineList) instead of this below:
+      graph.shapeList.add(lineList);
+      
+      // Plot the shapes to the JFrame window.
+      graph.PlotShapes();
+      
+   } // PlotTriangleFromLineLengths()
+   
+   
+   // Make sure the legs can actually form a trinagle.  Note: c must contain the
+   // longest leg.
+   private static boolean InvalidLegLengths(double a, double b, double c) {
+      
+      if((a == 0) || (b == 0) || (c == 0))
+         return true;
+      
+      return(!((a + b) > c));  // return false if the lengths are legit
+   }
    
    
    // Convert a double precision number to integer after rounding it to the 
