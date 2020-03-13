@@ -349,7 +349,7 @@ public class IsoscelesTriangle extends CommonFunctions {
                 graph.PlotShapes();
                 
                 // For testing only
-                Graph.PlotTriangleFromLineLengths(4.0, 5.0, 3.0);
+                //Graph.PlotTriangleFromLineLengths(4.0, 5.0, 3.0);
       
                 break;
 
