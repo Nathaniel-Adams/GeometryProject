@@ -1,3 +1,4 @@
+
 package app.shapes;
 
 //  ==========================
@@ -15,16 +16,14 @@ public class Triangle extends CommonFunctions {
     };
 //  ==================================================
 
-//  ===========================================================================    
+//  ===================================================================================    
     private Choices choices;
     private Scanner keyboard;
     private EquilateralTriangle equilateraltriangle;
     private ScaleneTriangle     scalenetriangle;
     private IsoscelesTriangle   isoscelestriangle;
     private RightTriangle       righttriangle;
-//  ===========================================================================
-
-
+//  ====================================================================================
 
 //  ===================================
     public Triangle(Scanner keyboard) {
@@ -36,10 +35,8 @@ public class Triangle extends CommonFunctions {
         isoscelestriangle   = new IsoscelesTriangle(keyboard);
         righttriangle       = new RightTriangle(keyboard);
 
-    } // Constructor
+    }// Constructor
 //  ===============
-
-
 
 //  ====================
     public void Menu() {
@@ -50,15 +47,13 @@ public class Triangle extends CommonFunctions {
                          "\u001b[34m5.\u001b[0m Go back                                 \n" +
                          "\u001b[31m===========================================\u001b[0m\n" );
 
-    } // Menu Function
+    }// Menu Function
 //  =================
-
-
 
 //  ==========================================
     public void QueryUser() throws Exception {
 
-        int answer;
+        int answer = 0;
 
         answer = InputInt(keyboard, 1, 5);
 
@@ -77,23 +72,16 @@ public class Triangle extends CommonFunctions {
 
         System.out.print("\u001b[0m"); // this will change the color back to normal.
 
-    } // QueryUser Function
+    }// QueryUser Function
 //  ======================
-
-
-
-
 
 //  ===============================================
     public void ProcessCommand() throws Exception {
-      
-        switch(choices) {
 
+        switch(choices) {
             case EQUILATERAL:
 
-                System.out.println("\nOpening Equilateral Triangle");
-
-                EquilateralTriangle.ClearScreen();
+                EquilateralTriangle.NowaitClearScreen();
 
                 do {
                     equilateraltriangle.MenuDisplay2d("Equilateral Triangle");
@@ -107,11 +95,9 @@ public class Triangle extends CommonFunctions {
 
                 break;
 
-                
             case RIGHT:
-                System.out.println("\nOpening Right Triangle");
-
-                RightTriangle.ClearScreen();
+            
+                EquilateralTriangle.NowaitClearScreen();
 
                 do {
                     righttriangle.MenuDisplay2d("Right Triangle");
@@ -127,12 +113,8 @@ public class Triangle extends CommonFunctions {
 
                 
             case ISOSCELES:
-               
-                Choices choice = choices;
                 
-                System.out.println("\nOpening Isosceles Triangle");
-
-                IsoscelesTriangle.ClearScreen();
+                EquilateralTriangle.NowaitClearScreen();
 
                 do {
                     isoscelestriangle.IsoscelesCreationMenu();
@@ -159,9 +141,8 @@ public class Triangle extends CommonFunctions {
 
             case SCALENE:
 
-                System.out.println("\nOpening Scalene Triangle");
+                EquilateralTriangle.NowaitClearScreen();
 
-                ScaleneTriangle.ClearScreen();
                 do {
                     scalenetriangle.MenuDisplay2d("Scalene Triangle");
                     scalenetriangle.QueryUser();
@@ -178,13 +159,12 @@ public class Triangle extends CommonFunctions {
             case GOBACK:
 
                     System.out.println("\nGoing back please wait");
+
                 break;
-        } // switch
+        }
         
-    } // ProcessCommand Function
+    }// ProcessCommand Function
 //  ===========================
-
-
 
 //  =========================
     public boolean Goback() {
@@ -194,10 +174,8 @@ public class Triangle extends CommonFunctions {
         else
             return false;
 
-    } // Goback Function
+    }// Goback Function
 //  ===================
-
-
 
 //  =====================
     public void close() {
@@ -207,10 +185,9 @@ public class Triangle extends CommonFunctions {
         isoscelestriangle   = null;
         equilateraltriangle = null;
 
-    } // Close Function
+    }// Close Function
 //  ==================
 
 
 }// class Triangle
 //  ==============
-
