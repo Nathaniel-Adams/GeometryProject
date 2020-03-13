@@ -347,6 +347,9 @@ public class IsoscelesTriangle extends CommonFunctions {
                 
                 // Plot the polygon
                 graph.PlotShapes();
+                
+                // For testing only
+                Graph.PlotTriangleFromLineLengths(4.0, 5.0, 3.0);
       
                 break;
 
@@ -601,3 +604,4 @@ public class IsoscelesTriangle extends CommonFunctions {
 
 
 } // IsoscelesTriangle Class
+
