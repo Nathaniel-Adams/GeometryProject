@@ -57,13 +57,13 @@ public class Menu extends CommonFunctions {
     public void Display() {
 
         System.out.println();
-        System.out.print("\u001b[31m===================================\u001b[0m\n" + // \u001b[31m is the ANSI code for red \u001b[0m resets.
-                         "\u001b[34m1.\u001b[0m Rectangle       \u001b[34m2.\u001b[0m Circle       \n" + // \u001b[34m1 is the ANSI code for blue.
-                         "\u001b[34m3.\u001b[0m Triangle        \u001b[34m4.\u001b[0m Trapizoid    \n" + 
-                         "\u001b[34m5.\u001b[0m Sphere          \u001b[34m6.\u001b[0m Prism        \n" +
-                         "\u001b[34m7.\u001b[0m Cube            \u001b[34m8.\u001b[0m Create my own\n" +
+        System.out.print("\u001b[31m===========================================\u001b[0m\n" + // \u001b[31m is the ANSI code for red \u001b[0m resets.
+                         "\u001b[34m1.\u001b[0m Rectangle           \u001b[34m2.\u001b[0m Circle(NI)       \n" + // \u001b[34m1 is the ANSI code for blue.
+                         "\u001b[34m3.\u001b[0m Triangle            \u001b[34m4.\u001b[0m Trapizoid    \n" + 
+                         "\u001b[34m5.\u001b[0m Sphere(NI)          \u001b[34m6.\u001b[0m Prism        \n" +
+                         "\u001b[34m7.\u001b[0m Cube            \u001b[34m8.\u001b[0m Create my own(NI)\n" +
                          "\u001b[34m9.\u001b[0m Quit                            \n" +
-                         "\u001b[31m===================================\u001b[0m\n");
+                         "\u001b[31m===========================================\u001b[0m\n");
                     
     }// Display Function
 //  ====================
