@@ -16,6 +16,7 @@ import app.CommonFunctions;
 import java.util.Scanner;
 import java.lang.Math;
 import java.util.concurrent.TimeUnit;
+import app.shapes.Graph;
 
 //  ======================================================
 public class ScaleneTriangle extends CommonFunctions {
@@ -112,14 +113,7 @@ public class ScaleneTriangle extends CommonFunctions {
                 break;
             case DISPLAY:
                     if (legA != 0) { // this display was hand coded. if the triangles 
-                        String string = "  /  \\  ";
-                        if (legA >= 10 ) 
-                            string = string.substring(1, string.length()); // if the value is over 10 it will allow the display not to be messed up.
-                        System.out.println("    /\\    \n" +
-                                     legA + string + legB +"  \n" +
-                                           "  /    \\  \n" + 
-                                           " --------  \n" +
-                                           "    " + legC); 
+                      Graph.PlotTriangleFromLineLengths(legA, legB, legC);
                     }// then
                     else
                         System.out.println("Error: No sides are set yet!");
