@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class CommonFunctions {
 
     //  ====================================================================
-    public static void ClearScreen() throws IOException, InterruptedException {
+    public static void ClearScreen() throws InterruptedException, Exception {
 
         /* ================SCRAPPED=====================================
         System.out.print("\033[H\033[2J");// This is an ANSI excape code
@@ -39,6 +39,15 @@ public class CommonFunctions {
             TimeUnit.SECONDS.sleep(1);// This is a delay function for 3 seconds.
         }// This is a delay function for 3 seconds.
 
+        NowaitClearScreen(); // clear screen
+
+    }// ClearScreen Function()
+//  ==========================
+
+//  =================================================================================
+    static public void NowaitClearScreen() throws IOException, InterruptedException {
+
+
         final String os = System.getProperty("os.name"); 
         // Since the value of string is not changed ever again it is better to make it final which means it can not be changed.
         // The System.getProperty will retrieve the exact string name of the system.
@@ -49,8 +58,8 @@ public class CommonFunctions {
             Runtime.getRuntime().exec("clear");
             // Then if it's not windows it will excetute the command clear for all the rest of the ios.
 
-    }// ClearScreen Function()
-//  ==========================
+    }// NowaitClearScreen()
+//  =======================
 
 //  ===============================================
     public void InvalidInputInt(Scanner keyboard) {
@@ -78,8 +87,8 @@ public class CommonFunctions {
 
     }// InputInt Function()
 //  =======================
-    
-    //  ===============================================
+
+//  ===============================================
     public void InvalidInputDouble(Scanner keyboard) {
 
         if (!keyboard.hasNextDouble()) {// In the scanner class it has a function to check if the next value is valid or not.
@@ -93,7 +102,7 @@ public class CommonFunctions {
 
 //  =========================================================
     public double InputDouble(Scanner keyboard, double min, double max) {
-    
+
         double answer = 0;
 
         System.out.println("\nPlease enter your Selection: \u001b[34m"); 
@@ -104,7 +113,6 @@ public class CommonFunctions {
         return answer; // returns double
 
     }// InputDouble Function()
-
 //  =========================================
     public void MenuDisplay2d (String file) {
 
