@@ -19,7 +19,7 @@ public class Menu extends CommonFunctions {
 
 //  ===============================================================================
     enum Choices {
-        RECTANGLE, CIRCLE, TRIANGLE, TRAPIZOID, SPHERE, CUBE, CONE, CREATEOWN, QUIT 
+        RECTANGLE, CIRCLE, TRIANGLE, TRAPIZOID, SPHERE, PRISM, CUBE, CREATEOWN, QUIT 
     };
 //  ===============================================================================
     
@@ -60,8 +60,8 @@ public class Menu extends CommonFunctions {
         System.out.print("\u001b[31m===================================\u001b[0m\n" + // \u001b[31m is the ANSI code for red \u001b[0m resets.
                          "\u001b[34m1.\u001b[0m Rectangle       \u001b[34m2.\u001b[0m Circle       \n" + // \u001b[34m1 is the ANSI code for blue.
                          "\u001b[34m3.\u001b[0m Triangle        \u001b[34m4.\u001b[0m Trapizoid    \n" + 
-                         "\u001b[34m5.\u001b[0m Sphere          \u001b[34m6.\u001b[0m Cube         \n" +
-                         "\u001b[34m7.\u001b[0m Cone            \u001b[34m8.\u001b[0m Create my own\n" +
+                         "\u001b[34m5.\u001b[0m Sphere          \u001b[34m6.\u001b[0m Prism        \n" +
+                         "\u001b[34m7.\u001b[0m Cube            \u001b[34m8.\u001b[0m Create my own\n" +
                          "\u001b[34m9.\u001b[0m Quit                            \n" +
                          "\u001b[31m===================================\u001b[0m\n");
                     
@@ -87,9 +87,9 @@ public class Menu extends CommonFunctions {
                 break;
             case 5: choices = Choices.SPHERE;
                 break;
-            case 6: choices = Choices.CUBE;
+            case 6: choices = Choices.PRISM;
                 break;
-            case 7: choices = Choices.CONE;
+            case 7: choices = Choices.CUBE;
                 break;
             case 8: choices = Choices.CREATEOWN;
                 break;
@@ -129,11 +129,11 @@ public class Menu extends CommonFunctions {
             case SPHERE:
 
                 break;
-            case CUBE:
-
+            case PRISM:
+                    shapes.Prism();
                 break;
-            case CONE:
-
+            case CUBE:
+                    shapes.Cube();
                 break;
             case CREATEOWN:
 
