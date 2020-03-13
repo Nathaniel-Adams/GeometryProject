@@ -32,16 +32,21 @@ public class Shapes extends CommonFunctions {
     }// Constructor
 //  ===============
 
+//  =====================================
     public void Cube() throws Exception {
 
         Cube.NowaitClearScreen();
 
         do {
-            cube.MenuDisplay2d("Cube");
+            cube.Menu();
             cube.QueryUser();
-            Cube.ClearScreen();
-        } while(false);
-    }
+            cube.ProcessCommand();
+            if (rectangle.Goback()) 
+                Cube.ClearScreen();
+
+        } while(cube.Goback());
+    }// Cube Function
+//  =================
 
 //  ==========================================
     public void Rectangle() throws Exception {
@@ -103,6 +108,8 @@ public class Shapes extends CommonFunctions {
         triangle.close();
         triangle = null;
         rectangle = null;
+        cube = null;
+        prism = null;
 
     }// Function Close
 //  ==================
